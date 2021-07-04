@@ -1,0 +1,89 @@
+﻿@model IEnumerable<RecievedAccessoriess>
+
+
+@using (Html.BeginForm())
+{
+    <input type="text" name="AID" hidden />
+
+}
+<div class="container p-3">
+    <div class="row pt-4">
+
+        <div class="col-6">
+            <h2 class="text-primary">Recieved Accessories</h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <a asp-controller="Accessories" asp-action="PostRecieved" class="btn btn-primary">
+                Add Recieved Accessories
+            </a>
+        </div>
+
+    </div>
+    <br /><br />
+
+    @if (Model.Count() > 0)
+    {
+
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        ARID
+                    </th>
+                    <th>
+                        AID
+                    </th>
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        RecievedQnty
+                    </th>
+                    <th>
+                        OrderedQnty
+                    </th>
+                    <th>
+                        Invoices
+                    </th>
+                    <th>
+                        Remarks
+                    </th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var details in Model)
+                {
+                    <tr>
+                        <td>@details.ARID</td>
+                        <td>@details.AID</td>
+                        <td>@details.Date</td>
+                        <td>@details.RecievedQnty</td>
+                        <td>@details.OrderedQnty</td>
+                        <td>@details.Invoices</td>
+                        <td>@details.Remarks</td>
+                        
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a asp-controller="Accessories" asp-route-ID="@details.ARID" asp-action="EditRecievedAccess" class="btn btn-outline-primary">EDIT</a>
+                              
+
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+
+        </table>
+    }
+    else
+    {
+        <p>No Data Exists</p>
+    }
+
+</div>
+
